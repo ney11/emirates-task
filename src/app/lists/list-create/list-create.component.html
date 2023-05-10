@@ -1,28 +1,36 @@
-<mat-card>
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-   <form (submit)="onSaveList(postForm)" #postForm="ngForm" *ngIf="!isLoading">
-    <mat-form-field>
-        <input matInput
-         type="text"
-         name="title"
-        [ngModel]="list?.title"
-        minlength="3"
-        required
-        placeholder="List Title"
-        #title="ngModel">
-        <mat-error *ngIf="title.invalid">Please enter title</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <textarea 
-        matInput 
-        name="content"
-        rows="4" 
-        [ngModel]="list?.content"
-        required
-        placeholder="List Content"
-        #content="ngModel"></textarea>
-        <mat-error *ngIf="content.invalid">Please enter title</mat-error>
-    </mat-form-field><br>
-    <button mat-raised-button type="submit" color="accent">Save Post</button>
-   </form>
-</mat-card>
+<div class="cmnt-list" style="display: flex;">
+    <div class="create" style="width: 50%;">
+        <h2 style="margin: auto;text-align: center;">Create comment here...</h2>
+        <mat-card>
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+           <form [formGroup]="form" (submit)="onSaveList()"  *ngIf="!isLoading">
+            <mat-form-field>
+                <input matInput
+                 type="text"
+                 formControlName="title"
+                
+                minlength="3"
+                
+                placeholder="Add name"
+                >
+                <mat-error *ngIf="form.get('title').invalid">Please enter title</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea 
+                matInput 
+                formControlName="content"
+                rows="4" 
+                
+                placeholder="Add comments"
+                ></textarea>
+                <mat-error *ngIf="form.get('content').invalid">Please enter title</mat-error>
+            </mat-form-field><br>
+            <button mat-raised-button type="submit" [disabled]="form.invalid"  color="accent">Save Comment</button>
+           </form>
+        </mat-card>
+    </div>
+    
+    <div class="lists" style="width: 50%;">
+        <app-list-post></app-list-post>
+    </div>
+</div>

@@ -60,9 +60,29 @@ export class ListsService {
         const id = responseData.postId;
         list.id = id;
         this.lists.push(list);
+        // this.webSocketService.listen('create').subscribe((data)=>{
+        //   console.log('data',data);
+        // this.update(data)
+        // }
+        // )
         this.listsUpdated.next([...this.lists]);
-        this.router.navigate(['/']);
+        this.router.navigate(['/create-list']);
       });
+    }
+
+    // added
+    update(data: List) {
+      // if(!data){
+      //   return;
+      // }else {
+      //   this.lists.push(data);
+      // }
+      // this,this.webSocketService.emit('create',{
+      //   title: data.title,
+      //   content: data.content,
+      //   id: data.id,
+      //   creator: data.creator
+      // })
     }
 
     getList(id: string){
@@ -79,7 +99,7 @@ export class ListsService {
             updatedLists[oldListIndex] = list;
             this.lists = updatedLists;
             this.listsUpdated.next([...this.lists]);
-            this.router.navigate(['/']);
+            this.router.navigate(['/create-list']);
         })
     }
 

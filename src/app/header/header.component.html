@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-    <span><a routerLink="/">My Lists</a></span>
+    <span><a routerLink="/"><img src="../../../assets/images/avtar.png" alt="Avatar"
+        class="avatar"></a></span>
     <span class="spacer"></span>
     <ul>
-        <li *ngIf="userisAunthenticated">
+        <!-- <li *ngIf="userisAunthenticated">
             <a mat-button routerLink="/create-list" routerLinkActive="mat-accent">Add List</a>
-        </li>
+        </li> -->
         <li *ngIf="!userisAunthenticated">
-            <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+            <a mat-button routerLink="/" routerLinkActive="mat-accent">Login</a>
         </li>
         <li *ngIf="!userisAunthenticated">
             <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>

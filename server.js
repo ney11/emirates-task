@@ -15,7 +15,7 @@
 const app = require("./backend/app");
 const debug = require("debug")("node-angular");
 const http = require("http");
-// const soket = require('socket.io');
+const soket = require('socket.io')(http);
 // const connect = require('./backend/connection/connect')
 
 const normalizePort = val => {
@@ -67,14 +67,38 @@ server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port);
 
+// added sockt
+const io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+  }
+});
+// var io = soket(server);
+io.on('connection',(soket)=> {
+        console.log('Connection has created with soket' + soket.id);
+        soket.on('create',(dataCrate)=> {
+            io.sockets.emit('crate',dataCrate)
+        });
+        soket.on("update", (update)=> {
+            io.sockets.emit('update',update)
+        })
+    })
 
-// const soketIo = soket(server);
-// soketIo.on('connection',(soket)=> {
-//     console.log('Connection has created with soket' + soket.id);
-//     soket.on(connect.Change,(changes)=> {
-//         soketIo.sockets.emit(connect.Change,changes)
-//     });
-//     soket.on(connect.create, (create)=> {
-//         soketIo.sockets.emit(connect.create,create)
-//     })
-// })
+
+//  var soketIo = soket(server);
+//  soketIo.on('connection',(soket)=> {
+//      console.log('Connection has created with soket' + soket.id);
+//      soket.on('create',(dataCrate)=> {
+//          soketIo.sockets.emit('crate',dataCrate)
+//      });
+//      soket.on("update", (update)=> {
+//          soketIo.sockets.emit('update',update)
+//      })
+//  })
+
+//  const io = require("socket.io")(httpServer, {
+//   cors: {
+//     origin: "https://example.com",
+//     methods: ["GET", "POST"]
+//   }
+// });

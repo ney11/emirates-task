@@ -60,7 +60,7 @@ export class AuthService {
             const expiratioDate = new Date(now.getTime() + expiedDuration*1000);
             console.log('expiratioDate',expiratioDate);
             this.saveAuthData(token,expiratioDate, this.userId);
-            this.router.navigate(['/']);
+            this.router.navigate(['/create-list']);
             }
         }, error=> {
             this.authStatusListner.next(false);

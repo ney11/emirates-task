@@ -40,6 +40,7 @@ import { ErrorComponent } from './error/error.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,

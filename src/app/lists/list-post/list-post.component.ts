@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+
+
 import { List } from '../list.model';
 import { ListsService } from '../lists.service';
 
@@ -32,11 +34,13 @@ export class ListPostComponent implements OnInit, OnDestroy{
       this.userIsAthenticated = isAthenticated;
       this.userId = this.authService.getUserId();
     });
+    // this.webSocketService.listen('update').subscribe((data)=>this.update(data))
   }
 
   listDelete(listId: any) {
     this.listsService.deleteList(listId);
   }
+
 
   ngOnDestroy(): void {
     this.listSub.unsubscribe();

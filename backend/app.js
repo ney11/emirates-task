@@ -3,7 +3,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const listRoutes = require('./routes/routes'); 
 const usersRoutes = require('./routes/users'); 
+const cors = require('cors');
 const app = express();
+
+// added for socket
+app.use(cors({origin: '*'}));
+
 // todo
 // remove retryWrites=true
 mongoose.connect("mongodb+srv://bapansujatadas:" +
